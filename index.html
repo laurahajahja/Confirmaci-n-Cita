@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Confirmación de mantenimiento</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #1b1b1b;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+    h2 {
+      color: #007e33;
+    }
+    .mensaje {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      margin-top: 25px;
+      background-color: #007e33;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005e25;
+    }
+  </style>
+</head>
+<body>
+  <div class="mensaje">
+    <h2>⭐ Buenas tardes</h2>
+    <p>
+      Nos gustaría programar el mantenimiento de sus utensilios, ya que es muy importante para mantenerlos en buen estado y <strong>activar la garantía</strong>.
+    </p>
+    <p>✅ Este servicio está incluido como derecho por la compra de nuestros productos. En Dinastía Rojas nos preocupamos por usted y su satisfacción.</p>
+
+    <label for="direccion">📍 Dirección:</label>
+    <input type="text" id="direccion" value="Calle 13A #18-19 – Soacha" required />
+
+    <label for="fecha">📅 Fecha:</label>
+    <input type="date" id="fecha" required />
+
+    <label for="hora">⏰ Hora:</label>
+    <input type="time" id="hora" required />
+
+    <p>✍️ Recuerde que debe estar presente el titular para firmar la hoja de satisfacción.</p>
+
+    <button onclick="enviarWhatsApp()">CONFIRMAR</button>
+  </div>
+
+  <script>
+    function enviarWhatsApp() {
+      const direccion = document.getElementById("direccion").value.trim();
+      const fecha = document.getElementById("fecha").value;
+      const hora = document.getElementById("hora").value;
+
+      if (!direccion || !fecha || !hora) {
+        alert("Por favor complete todos los campos.");
+        return;
+      }
+
+      const mensaje = `✅ Confirmación de mantenimiento:\n\n📍 Dirección: ${direccion}\n📅 Fecha: ${fecha}\n⏰ Hora: ${hora}\n\nPor favor confirmar programación.`;
+
+      // Reemplaza con tu número de WhatsApp en formato internacional (sin espacios ni signos)
+      const numero = "573057788935"; // Ejemplo: 573057788935
+
+      const url = `https://api.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent(mensaje)}`;
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
